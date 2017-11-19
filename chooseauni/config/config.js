@@ -4,8 +4,8 @@ const packageJson = require('../package.json');
 const configEnv = require('./config-env');
 
 const config = {
-    apiRoutes: 'routes/api/*.js',
-    viewRoutes: 'routes/routes/js',
+    apiRoutes: 'routes/api/search.js',
+    viewRoutes: 'routes/routes.js',
     autorouting: true,
     logging: {
         express: false,
@@ -21,7 +21,7 @@ const config = {
     token: {
         secretToken: 'development'
     },
-    timezone: '',
+    timezone: 'America/Argentina/Buenos_Aires',
     corsConfig: {
         origin: '*',
         methods: [

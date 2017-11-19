@@ -1,0 +1,53 @@
+doctype html
+head
+    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js")
+    link(rel="stylesheet", href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")
+    link(rel="stylesheet", href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css")
+    link(rel="stylesheet", href="/stylesheets/style.css")
+    script(src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js")
+    script(src="/scripts/search.js")
+html(ng-app="searchApp")
+    body
+        h2 Todo
+        div(ng-controller="SearchController")
+            table(ng-table="searchResult", class="table table-bordered table-condensed table-striped")
+                thead
+                    th Uni/College
+                    th Course
+                    th UCAS Code
+                    th Qual
+                    th Years
+                    th Mode
+                    th Typical Offer
+                    th Study Abroad
+                    th Work Placement
+                    th UK Uni Ranking
+                    th World Uni Ranking
+                    th Group
+                    th Exam%
+                    th CourseWork%
+                    th Contact%
+                    th Success
+                    th Satisfaction
+                    th Entry Standards
+                    th CAU Rating
+                tr(ng-repeat="info in $data")
+                    td(data-title="'Uni/College'", filter="{uniName: 'text'}") {{info.uniName}}
+                    td(data-title="'Course'") {{info.courseName}}
+                    td(data-title="'UCAS Code'") {{info.courseCode}}
+                    td(data-title="'Qual'", filter="{courseQualification: 'text'}") {{info.courseQualification}}
+                    td(data-title="'Years'", filter="{courseDuration: 'text'}") {{info.courseDuration}}
+                    td(data-title="'Mode'", filter="{courseStudyMode: 'text'}") {{info.courseStudyMode}}
+                    td(data-title="'Typical Offer'") {{info.courseTypicalOffer}}
+                    td(data-title="'Study Abroad'", filter="{courseStudyAbroad: 'text'}") {{info.courseStudyAbroad}}
+                    td(data-title="'Work Placement'", filter="{courseSandwich: 'text'}") {{info.courseSandwich}}
+                    td(data-title="'UK Uni Ranking'", sortable="'uniNationalRanking'") {{info.uniNationalRanking}}
+                    td(data-title="'World Uni Ranking'", sortable="'uniWorldRanking'") {{info.uniWorldRanking}}
+                    td(data-title="'Group'", filter="{uniGroup: 'text'}") {{info.uniGroup}}
+                    td(data-title="'Exam%'", sortable="'courseExams'") {{info.courseExams}}
+                    td(data-title="'CourseWork%'", sortable="'courseCoursework'") {{info.courseCoursework}}
+                    td(data-title="'Contact%'", sortable="'courseContact'") {{info.courseContact}}
+                    td(data-title="'Success'", sortable="'courseSuccessScore'") {{info.courseSuccessScore}}
+                    td(data-title="'Satisfaction'", sortable="'courseSatisfactionLevel'") {{info.courseSatisfactionLevel}}
+                    td(data-title="'Entry Standards'", sortable="'courseEntryStandardsLevel'") {{info.courseEntryStandardsLevel}}
+                    td(data- title="'CAU Rating'") {{info.courseCauRating}}

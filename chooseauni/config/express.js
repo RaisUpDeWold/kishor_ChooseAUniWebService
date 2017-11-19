@@ -1,9 +1,10 @@
 'use strict';
 
-const express = require('express');
 const path = require('path');
+const express = require('express');
 var favicon = require('serve-favicon');
-const logger = require('morgan');
+const morganLogger = require('morgan');
+const logger = require(path.join('..', 'modules', 'logger'));
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
@@ -13,7 +14,7 @@ const configEnv = require('.' + path.sep + 'config-env');
 function createExpressApp() {
     const app = express();
 
-    app.use(logger('dev'));
+    //app.use(morganLogger('dev'));
 
     // MongoClient
     logger.info('Configuring MongoDB...');
@@ -22,7 +23,7 @@ function createExpressApp() {
         db += '-test';      // Test Mode
     }
     logger.info('MongoDB: Connecting to ', db, configEnv.mongo.host + ' : ' + configEnv.mongo.port);
-    mongoose.connect(configEnv.mongo.host, db, configEnv.mongo.port, {
+    /*mongoose.connect(configEnv.mongo.host, db, configEnv.mongo.port, {
         user: configEnv.mongo.user,
         pass: configEnv.mongo.pass
     }, function () {
@@ -30,7 +31,9 @@ function createExpressApp() {
             logger.debug('MongoDB: Dropping the Database...');
             mongoose.connection.db.dropDatabase();
         }
-    });
+    });*/
+    logger.info('mongodb://' + configEnv.mongo.host + ':' + configEnv.mongo.port + '/' + db);
+    mongoose.connect('mongodb://' + configEnv.mongo.host + '/' + db);
 
     // Auto Routing
     if (config.autorouting) {
@@ -45,6 +48,8 @@ function createExpressApp() {
 
         const viewFiles = require('glob').sync(config.viewRoutes);
         viewFiles.forEach((file) => {
+            //const route = '/' + file.replace(/(^(\.\/|)routes\/|((\/|)index|)\.js$)/g, '');
+            const route = '/';
             logger.debug('View - Auto-Routing: Using', file, 'Router for Route', route);
             app.use(route, require(path.join('..', file)));
         });
@@ -63,20 +68,23 @@ function createExpressApp() {
     // Set View
     logger.info('Configuring Views');
     let staticView = 'views';
-    if (app.get('env') == 'development') {
+    /*if (app.get('env') == 'development') {
         staticView = 'views_public';
-    }
-    app.set('views', path.join(__dirname, staticView));
+    }*/
+    logger.info(path.join(__dirname, staticView));
+    //app.set('views', path.join('../', staticView));
+    app.set('views', '/Volumes/MyWork/Task/Web/MEAN/CAU_NODE/chooseauni/views');
     app.set('view engine', 'jade');
 
     // Set Static Folder
     logger.info('Configuring Static Folder...');
     let staticRoute = 'public';
-    if (app.get('env') === 'development') {
+    /*if (app.get('env') === 'development') {
         staticRoute = 'build_public';
-    }
+    }*/
     logger.debug('Static folder: Using', staticRoute);
-    app.use(express.static(path.join(__dirname, staticRoute)));
+    //app.use(express.static(path.join('..', staticRoute)));
+    app.use(express.static('/Volumes/MyWork/Task/Web/MEAN/CAU_NODE/chooseauni/public'));
 
     return app;
 }
