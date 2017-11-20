@@ -1,5 +1,68 @@
-extends layout
+doctype html
+html(lang="en")
+    head
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        meta(name="description", content="")
+        meta(name="author", content="")
+        title ChooseAUni - Your Future
 
-block content
-  h1= title
-  p Welcome to #{title}
+        // JQuery
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+
+        // Bootstrap
+        link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+        script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+
+        // Custom Fonts
+        link(rel="stylesheet", type="text/css", href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic")
+        link(rel="stylesheet", type="text/css", href="/font-awesome/css/font-awesome.min.css")
+
+        // User Defined Scripts and Styles
+        link(rel="stylesheet", type="text/css", href="/stylesheets/index.css")
+        script(src="/scripts/index.js")
+    body
+        // Navigation Bar
+        nav.navbar.navbar-default.navbar-fixed-top.topnav(role="navigation"): .container.topnav
+            .navbar-header
+                button.navbar-toggle(type="button", data-toggle="collapse", data-target="#chooseauni-navbar")
+                    span.sr-only Toggle Navigation
+                    span.icon-bar: span.icon-bar: span.icon-bar
+            .collapse.navbar-collapse#chooseauni-navbar
+                ul.nav.navbar-nav.navbar-right
+                    li: a(href="#chooseauni-header") About
+                    li: a(href="#chooseauni-contact") Contact
+                    li.dropdown
+                        a.dropdown-toggle(href="#", data-toggle="dropdown"): b Log In<span class="caret"></span>
+                        ul.dropdown-menu.dropdown-login
+                            li: .row: .col-md-12: .social-buttons
+                                form(action="/api/user/login", method="post")
+                                    .form-group UserName<br />
+                                        label.sr-only(for="user_email") Email Address
+                                        input.form-control#user_email(type="email", name="user_email", placeholder="Email Address", required)
+                                    .form-group Password<br />
+                                        label.sr-only(for="user_pass") Password
+                                        input.form-control#user_pass(type="password", name="user_pass", placeholder="Password", required)
+                                    .form-group.login-failed-message #{login_failed}
+                                    br
+                                    .form-group: button.btn.btn-primary.btn-block(type="submit") Sign In
+                                    .checkbox: label <input type="checkbox"> keep me logged-in
+
+        // Header
+        a(name="chooseauni-header")
+        .intro-header: .container: .row: .col-lg-12
+            .intro-message
+                h1 Choose a Uni
+                h3 Your future made easy
+                hr.intro-divider
+                ul.list-inline COMING SOON!
+        
+        // Footer
+        footer: .container: .row: .col-lg-12
+            ul.list-inline
+                li: a(href="#") Home
+                li.footer-menu-divider &sdot;
+                li: a(href="#about") About
+                li.footer-menu-divider &sdot;
+                li: a(href="#contact") Contact
+                p.copyright.text-muted.small Copyright &copy; ChooseAUni 2016. All Rights Reserved

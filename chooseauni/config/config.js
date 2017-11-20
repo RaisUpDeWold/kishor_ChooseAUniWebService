@@ -4,7 +4,7 @@ const packageJson = require('../package.json');
 const configEnv = require('./config-env');
 
 const config = {
-    apiRoutes: 'routes/api/search.js',
+    apiRoutes: 'routes/api/*.js',
     viewRoutes: 'routes/routes.js',
     autorouting: true,
     logging: {

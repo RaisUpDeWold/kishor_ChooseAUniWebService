@@ -58,8 +58,8 @@ function createExpressApp() {
     // uncomment after placing your favicon in /public
     //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
-    app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.json());
 
     // Set Port...
     logger.info('Configuring Port', config.server.port);
@@ -72,8 +72,7 @@ function createExpressApp() {
         staticView = 'views_public';
     }*/
     logger.info(path.join(__dirname, staticView));
-    //app.set('views', path.join('../', staticView));
-    app.set('views', '/Volumes/MyWork/Task/Web/MEAN/CAU_NODE/chooseauni/views');
+    app.set('views', path.join(staticView));
     app.set('view engine', 'jade');
 
     // Set Static Folder
@@ -83,8 +82,7 @@ function createExpressApp() {
         staticRoute = 'build_public';
     }*/
     logger.debug('Static folder: Using', staticRoute);
-    //app.use(express.static(path.join('..', staticRoute)));
-    app.use(express.static('/Volumes/MyWork/Task/Web/MEAN/CAU_NODE/chooseauni/public'));
+    app.use(express.static(path.join(staticRoute)));
 
     return app;
 }
