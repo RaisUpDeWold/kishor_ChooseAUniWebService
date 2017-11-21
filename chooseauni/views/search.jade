@@ -4,27 +4,33 @@ head
     link(rel="stylesheet", href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css")
     link(rel="stylesheet", href="/stylesheets/style.css")
 
+    // JQuery
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+
+    // Angular
     script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js")
     script(src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js")
+    script(src="/scripts/angular-resource.js")
     script(src="/scripts/search.js")
 html(ng-app="searchApp")
     body
         h2 Todo
         div(ng-controller="SearchController")
+            //p Search Text <input type="text" size="30" id="chooseauni_search" ng-model="search_text" ng-change="searchText()" />
             table(ng-table="searchResult", class="table table-bordered table-condensed table-striped")
                 tr(ng-repeat="info in $data")
-                    td(data-title="'Uni/College'", filter="{uniName: 'text'}") {{info.uniName}}
+                    td(data-title="'Uni/College'") {{info.uniName}}
                     td(data-title="'Course'") {{info.courseName}}
                     td(data-title="'UCAS Code'") {{info.courseCode}}
-                    td(data-title="'Qual'", filter="{courseQualification: 'text'}") {{info.courseQualification}}
-                    td(data-title="'Years'", filter="{courseDuration: 'text'}") {{info.courseDuration}}
-                    td(data-title="'Mode'", filter="{courseStudyMode: 'text'}") {{info.courseStudyMode}}
+                    td(data-title="'Qual'") {{info.courseQualification}}
+                    td(data-title="'Years'") {{info.courseDuration}}
+                    td(data-title="'Mode'") {{info.courseStudyMode}}
                     td(data-title="'Typical Offer'") {{info.courseTypicalOffer}}
-                    td(data-title="'Study Abroad'", filter="{courseStudyAbroad: 'text'}") {{info.courseStudyAbroad}}
-                    td(data-title="'Work Placement'", filter="{courseSandwich: 'text'}") {{info.courseSandwich}}
+                    td(data-title="'Study Abroad'") {{info.courseStudyAbroad}}
+                    td(data-title="'Work Placement'") {{info.courseSandwich}}
                     td(data-title="'UK Uni Ranking'", sortable="'uniNationalRanking'") {{info.uniNationalRanking}}
                     td(data-title="'World Uni Ranking'", sortable="'uniWorldRanking'") {{info.uniWorldRanking}}
-                    td(data-title="'Group'", filter="{uniGroup: 'text'}") {{info.uniGroup}}
+                    td(data-title="'Group'") {{info.uniGroup}}
                     td(data-title="'Exam%'", sortable="'courseExams'") {{info.courseExams}}
                     td(data-title="'CourseWork%'", sortable="'courseCoursework'") {{info.courseCoursework}}
                     td(data-title="'Contact%'", sortable="'courseContact'") {{info.courseContact}}

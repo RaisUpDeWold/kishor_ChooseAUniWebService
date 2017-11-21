@@ -3,6 +3,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
+const logger = require('../modules/logger.js');
 
 const KisCourseSchema = new Schema({
     uniName: {
