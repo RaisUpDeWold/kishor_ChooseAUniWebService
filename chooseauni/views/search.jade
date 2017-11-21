@@ -16,7 +16,7 @@ html(ng-app="searchApp")
     body
         h2 Todo
         div(ng-controller="SearchController")
-            //p Search Text <input type="text" size="30" id="chooseauni_search" ng-model="search_text" ng-change="searchText()" />
+            p Search Text <input type="text" size="30" id="chooseauni_search" ng-model="search_text" ng-change="searchText()" />
             table(ng-table="searchResult", class="table table-bordered table-condensed table-striped")
                 tr(ng-repeat="info in $data")
                     td(data-title="'Uni/College'") {{info.uniName}}
