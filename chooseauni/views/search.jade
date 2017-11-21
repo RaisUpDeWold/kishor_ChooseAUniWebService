@@ -12,26 +12,6 @@ html(ng-app="searchApp")
         h2 Todo
         div(ng-controller="SearchController")
             table(ng-table="searchResult", class="table table-bordered table-condensed table-striped")
-                thead
-                    th Uni/College
-                    th Course
-                    th UCAS Code
-                    th Qual
-                    th Years
-                    th Mode
-                    th Typical Offer
-                    th Study Abroad
-                    th Work Placement
-                    th UK Uni Ranking
-                    th World Uni Ranking
-                    th Group
-                    th Exam%
-                    th CourseWork%
-                    th Contact%
-                    th Success
-                    th Satisfaction
-                    th Entry Standards
-                    th CAU Rating
                 tr(ng-repeat="info in $data")
                     td(data-title="'Uni/College'", filter="{uniName: 'text'}") {{info.uniName}}
                     td(data-title="'Course'") {{info.courseName}}

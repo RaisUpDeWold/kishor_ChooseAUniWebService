@@ -48,7 +48,6 @@ function createExpressApp() {
 
         const viewFiles = require('glob').sync(config.viewRoutes);
         viewFiles.forEach((file) => {
-            //const route = '/' + file.replace(/(^(\.\/|)routes\/|((\/|)index|)\.js$)/g, '');
             const route = '/';
             logger.debug('View - Auto-Routing: Using', file, 'Router for Route', route);
             app.use(route, require(path.join('..', file)));
