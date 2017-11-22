@@ -4,8 +4,8 @@ const url = require('url');
 
 /* LogIn Action */
 function login(req, res, next) {
-    let user_email = "a@a.a";
-    let user_pass = "a";
+    let user_email = "test@chooseauni.com";
+    let user_pass = "123cba";
     if (req.body.user_email == user_email && req.body.user_pass == user_pass) res.redirect("/search");
     else res.redirect(url.format({
         pathname: "/",

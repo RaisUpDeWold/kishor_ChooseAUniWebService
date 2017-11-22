@@ -1,40 +1,32 @@
 doctype html
 head
-    link(rel="stylesheet", href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")
-    link(rel="stylesheet", href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css")
-    link(rel="stylesheet", href="/stylesheets/style.css")
 
     // JQuery
-    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+    script(src="/scripts/jquery.min.js")
+
+    // Bootstrap
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+    script(src="/scripts/bootstrap.min.js")
 
     // Angular
     script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js")
-    script(src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js")
+
+    // UI - Grid
+    link(rel="stylesheet", href="/stylesheets/ui-grid.css")
+    script(src="/scripts/ui-grid.js")
+
+    // User-Defined
+    link(rel="stylesheet", href="/stylesheets/search.css")
     script(src="/scripts/angular-resource.js")
     script(src="/scripts/search.js")
 html(ng-app="searchApp")
-    body
-        h2 Todo
-        div(ng-controller="SearchController")
-            p Search Text <input type="text" size="30" id="chooseauni_search" ng-model="search_text" ng-change="searchText()" />
-            table(ng-table="searchResult", class="table table-bordered table-condensed table-striped")
-                tr(ng-repeat="info in $data")
-                    td(data-title="'Uni/College'") {{info.uniName}}
-                    td(data-title="'Course'") {{info.courseName}}
-                    td(data-title="'UCAS Code'") {{info.courseCode}}
-                    td(data-title="'Qual'") {{info.courseQualification}}
-                    td(data-title="'Years'") {{info.courseDuration}}
-                    td(data-title="'Mode'") {{info.courseStudyMode}}
-                    td(data-title="'Typical Offer'") {{info.courseTypicalOffer}}
-                    td(data-title="'Study Abroad'") {{info.courseStudyAbroad}}
-                    td(data-title="'Work Placement'") {{info.courseSandwich}}
-                    td(data-title="'UK Uni Ranking'", sortable="'uniNationalRanking'") {{info.uniNationalRanking}}
-                    td(data-title="'World Uni Ranking'", sortable="'uniWorldRanking'") {{info.uniWorldRanking}}
-                    td(data-title="'Group'") {{info.uniGroup}}
-                    td(data-title="'Exam%'", sortable="'courseExams'") {{info.courseExams}}
-                    td(data-title="'CourseWork%'", sortable="'courseCoursework'") {{info.courseCoursework}}
-                    td(data-title="'Contact%'", sortable="'courseContact'") {{info.courseContact}}
-                    td(data-title="'Success'", sortable="'courseSuccessScore'") {{info.courseSuccessScore}}
-                    td(data-title="'Satisfaction'", sortable="'courseSatisfactionLevel'") {{info.courseSatisfactionLevel}}
-                    td(data-title="'Entry Standards'", sortable="'courseEntryStandardsLevel'") {{info.courseEntryStandardsLevel}}
-                    td(data-title="'CAU Rating'") {{info.courseCauRating}}
+    body(ng-controller="SearchController")
+        nav.navbar.navbar-inverse
+            .container-fluid: .navbar-header
+                a.navbar-brand(href="#") Choose A Uni
+                form.navbar-form.navbar-left: .input-group
+                    input.form-control(type="text", placeholder="Search", id="chooseauni_search", ng-model="search_text", ng-change="searchKisCourse()", size="60")
+        .container: .row
+            h1 Search Result
+            hr
+            .grid(ui-grid="searchGrid", ui-grid-resize-columns, ui-grid-pagination)

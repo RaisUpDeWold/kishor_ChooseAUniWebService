@@ -1,0 +1,10 @@
+/* Navigation Bar */
+.navbar {
+    background-color: #343642;
+}
+
+/* NgTable Custom Style */
+.grid {
+    width: 100%;
+    height: 700px;
+}
