@@ -10,7 +10,7 @@ function login(req, res, next) {
     else res.redirect(url.format({
         pathname: "/",
         query: {
-            "login_failed": "Invalid Login Credentials"
+            "login_failed": "Login Detail Invalid"
         }
     }));
 }

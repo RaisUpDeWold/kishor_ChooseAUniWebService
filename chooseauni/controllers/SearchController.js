@@ -12,10 +12,13 @@ function getSearchResultWithParams(req, res, next) {
     }
     count = parseInt(req.query.count, 10);
     var query = null;
-    if (search == "") query = KisCourse.find({});
-    else {
-        var regSearch = new RegExp(search);
-        query = KisCourse.find({
+    var orSearchQuery = [];
+    var searchArr = search.split(" ");
+    for (var i = 0; i < searchArr.length; i ++) {
+        if (searchArr[i].length < 2) continue;
+        if (i == 0 && searchArr[i].length < 3) continue;
+        var regSearch = new RegExp(searchArr[i]);
+        orSearchQuery.push({
             $or: [
                 { "uniName": regSearch },
                 { "courseQualification": regSearch },
@@ -27,7 +30,8 @@ function getSearchResultWithParams(req, res, next) {
             ]
         });
     }
-    
+    if (orSearchQuery.length == 0) query = KisCourse.find({});
+    else query = KisCourse.find({ $and: orSearchQuery });
     query.sort(sorting).limit(count).skip((page - 1) * count).then(courses => {
         res.send(courses);
     }).catch (e => {
