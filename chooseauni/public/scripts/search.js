@@ -5,7 +5,7 @@ var SearchController = function($scope, $http, $resource, uiGridConstants) {
     var searchCountApi = $resource("/api/search/count");
     var searchApiParams = {
         page: 1,
-        count: 10,
+        count: 20,
         sorting: {},
         search: "",
         filters: ""
@@ -22,8 +22,8 @@ var SearchController = function($scope, $http, $resource, uiGridConstants) {
         useExternalFiltering: true,
         useExternalPagination: true,
         fastWatch: true,
-        paginationPageSizes: [10, 25, 50, 100],
-        paginationPageSize: 10,
+        paginationPageSizes: [20, 50, 100],
+        paginationPageSize: 20,
         columnDefs: [
             { name: "Uni/Course", field: "uniName", width: 200 },
             { name: "Course", field: "courseName", width: 200 },

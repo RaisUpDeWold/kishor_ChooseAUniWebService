@@ -18,7 +18,7 @@ function getSearchResultWithParams(req, res, next) {
     for (var i = 0; i < searchArr.length; i ++) {
         if (searchArr[i].length < 2) continue;
         if (i == 0 && searchArr[i].length < 3) continue;
-        var regSearch = new RegExp(searchArr[i]);
+        var regSearch = new RegExp(searchArr[i], 'i');
         andSearchQuery.push({
             $or: [
                 { "uniName": regSearch },
@@ -37,7 +37,7 @@ function getSearchResultWithParams(req, res, next) {
     for (var i = 0; i < filters.length; i ++) {
         var key = Object.keys(filters[i])[0];
         var filter = {};
-        var regSearch = new RegExp(filters[i][key]);
+        var regSearch = new RegExp(filters[i][key], 'i');
         filter[key] = regSearch;
         andSearchQuery.push(filter);
     }
@@ -68,7 +68,7 @@ function getSearchResultCounts(req, res, next) {
         for (var i = 0; i < searchArr.length; i ++) {
             if (searchArr[i].length < 2) continue;
             if (i == 0 && searchArr[i].length < 3) continue;
-            var regSearch = new RegExp(searchArr[i]);
+            var regSearch = new RegExp(searchArr[i], 'i');
             andSearchQuery.push({
                 $or: [
                     { "uniName": regSearch },
@@ -87,7 +87,7 @@ function getSearchResultCounts(req, res, next) {
         for (var i = 0; i < filters.length; i ++) {
             var key = Object.keys(filters[i])[0];
             var filter = {};
-            var regSearch = new RegExp(filters[i][key]);
+            var regSearch = new RegExp(filters[i][key], 'i');
             filter[key] = regSearch;
             andSearchQuery.push(filter);
         }

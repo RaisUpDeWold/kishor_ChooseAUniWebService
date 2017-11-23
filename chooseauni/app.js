@@ -3,6 +3,7 @@ var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
 
 var app = require(['.', 'config', 'express'].join(path.sep));
+//var app = require("./config/express");
 
 app.use(cookieParser());
 

@@ -25,8 +25,8 @@ html(ng-app="searchApp")
             .container-fluid: .navbar-header
                 a.navbar-brand(href="#") Choose A Uni
                 form.navbar-form.navbar-left: .input-group
-                    input.form-control(type="text", placeholder="Search", id="chooseauni_search", ng-model="search_text", ng-change="searchKisCourse()", size="100")
-        .container: .row
-            h1 Search Result
-            hr
-            .grid(ui-grid="searchGrid", ui-grid-resize-columns, ui-grid-pagination)
+        .container
+            .row.form-group
+                label.col-md-1.col-form-label(for="chooseauni_search", style="font-size: 24px;") Search
+                .col-md-11: input.form-control(type="text", placeholder="Search...", id="chooseauni_search", ng-model="search_text", ng-change="searchKisCourse()")
+            .row: .grid(ui-grid="searchGrid", ui-grid-resize-columns, ui-grid-pagination)
