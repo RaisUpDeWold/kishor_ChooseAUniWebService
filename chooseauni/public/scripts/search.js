@@ -16,7 +16,7 @@ var SearchController = function($scope, $http, $resource, uiGridConstants) {
     };
     $scope.search_text = "";
     $scope.searchGrid = {
-        enableSorting: false,
+        enableSorting: true,
         useExternalSorting: true,
         enableFiltering: true,
         useExternalFiltering: true,
@@ -32,15 +32,36 @@ var SearchController = function($scope, $http, $resource, uiGridConstants) {
             { name: "Years", field: "courseDuration", width: 100 },
             {
                 name: "Mode", field: "courseStudyMode", width: 100,
-                filter : {
-                    term: "Part Time",
+                filter: {
                     type: uiGridConstants.filter.SELECT,
-                    selectOptions: [ { value: "Part Time", label: "Part Time" }, { value: "Full Time", label: "Full Time" } ]
+                    selectOptions: [
+                        { value: "Full Time", label: "Full Time" }, 
+                        { value: "Part Time", label: "Part Time" }, 
+                        { value: "Full or Part Time", label: "Full or Part Time" }
+                    ]
                 }
             },
             { name: "Typical Offer", field: "courseTypialOffer", width: 100 },
-            { name: "Study Abroad", field: "courseStudyAbroad", width: 100 },
-            { name: "Work Placement", field: "courseSandwich", width: 100 },
+            {
+                name: "Study Abroad", field: "courseStudyAbroad", width: 100,
+                filter: {
+                    type: uiGridConstants.filter.SELECT,
+                    selectOptions: [
+                        { value: "Year Abroad: Optional", label: "Year Abroad: Optional" },
+                        { value: "Year Abroad: Compulsory", label: "Year Abroad: Compulsory" }
+                    ]
+                }
+            },
+            {
+                name: "Work Placement", field: "courseSandwich", width: 100,
+                filter: {
+                    type: uiGridConstants.filter.SELECT,
+                    selectOptions: [
+                        { value: "Sandwich: Optional", label: "Sandwich: Optional" },
+                        { value: "Sandwich: Compulsory", label: "Sandwich: Compulsory" }
+                    ]
+                }
+            },
             { name: "UK Uni Ranking", field: "uniNationalRanking", enableSorting: true, width: 100 },
             { name: "World Uni Ranking", field: "uniWorldRanking", enableSorting: true, width: 100 },
             { name: "Group", field: "uniGroup", width: 100 },
@@ -48,8 +69,32 @@ var SearchController = function($scope, $http, $resource, uiGridConstants) {
             { name: "CourseWork%", field: "courseCoursework", enableSorting: true, width: 100 },
             { name: "Contact%", field: "courseContact", enableSorting: true, width: 100 },
             { name: "Success", field: "courseSuccessScore", enableSorting: true, width: 100 },
-            { name: "Satisfaction", field: "courseSatisfactionLevel", enableSorting: true, width: 150 },
-            { name: "Entry Standards", field: "courseEntryStandardsLevel", enableSorting: true, width: 180 },
+            {
+                name: "Satisfaction", field: "courseSatisfactionLevel", enableSorting: true, width: 150,
+                filter: {
+                    type: uiGridConstants.filter.SELECT,
+                    selectOptions: [
+                        { value: "Satisfaction: Very High", label: "Satisfaction: Very High" },
+                        { value: "Satisfaction: High", label: "Satisfaction: High" },
+                        { value: "Satisfaction: Medium", label: "Satisfaction: Medium" },
+                        { value: "Satisfaction: Low", label: "Satisfaction: Low" },
+                        { value: "Satisfaction: Very Low", label: "Satisfaction: Very Low" }
+                    ]
+                }
+            },
+            {
+                name: "Entry Standards", field: "courseEntryStandardsLevel", enableSorting: true, width: 180,
+                filter: {
+                    type: uiGridConstants.filter.SELECT,
+                    selectOptions: [
+                        { value: "Entry Standard: Very High", label: "Entry Standard: Very High" },
+                        { value: "Entry Standard: High", label: "Entry Standard: High" },
+                        { value: "Entry Standard: Medium", label: "Entry Standard: Medium" },
+                        { value: "Entry Standard: Low", label: "Entry Standard: Low" },
+                        { value : "Entry Standard: Very Low", label: "Entry Standard: Very Low" }
+                    ]
+                }
+            },
             { name: "CAU Rating", field: "courseCauRating", width: 100 }
         ],
         onRegisterApi: function(gridApi) {
