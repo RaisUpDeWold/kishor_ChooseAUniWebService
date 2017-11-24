@@ -1,25 +1,24 @@
 doctype html
-head
-
-    // JQuery
-    script(src="/scripts/jquery.min.js")
-
-    // Bootstrap
-    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
-    script(src="/scripts/bootstrap.min.js")
-
-    // Angular
-    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js")
-
-    // UI - Grid
-    link(rel="stylesheet", href="/stylesheets/ui-grid.css")
-    script(src="/scripts/ui-grid.js")
-
-    // User-Defined
-    link(rel="stylesheet", href="/stylesheets/search.css")
-    script(src="/scripts/angular-resource.js")
-    script(src="/scripts/search.js")
 html(ng-app="searchApp")
+    head
+        // JQuery
+        script(src="/scripts/jquery.min.js")
+
+        // Bootstrap
+        link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+        script(src="/scripts/bootstrap.min.js")
+
+        // Angular
+        script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js")
+
+        // UI - Grid
+        link(rel="stylesheet", href="/stylesheets/ui-grid.css")
+        script(src="/scripts/ui-grid.js")
+
+        // User-Defined
+        link(rel="stylesheet", href="/stylesheets/search.css")
+        script(src="/scripts/angular-resource.js")
+        script(src="/scripts/search.js")
     body(ng-controller="SearchController")
         nav.navbar.navbar-inverse
             .container-fluid: .navbar-header
