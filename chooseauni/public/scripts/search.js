@@ -25,8 +25,12 @@ var SearchController = function($scope, $http, $resource, uiGridConstants) {
         paginationPageSizes: [20, 50, 100],
         paginationPageSize: 20,
         columnDefs: [
-            { name: "Uni/Course", field: "uniName", width: 200 },
-            { name: "Course", field: "courseName", width: 200 },
+            { name: "Uni/College", field: "uniName", width: 200 },
+            {
+                name: "Course", field: "courseName", width: 200,
+                cellTemplate: "<div class='ui-grid-cell-contents tooltip-uigrid' title='{{COL_FIELD}}'>" +
+                                "<a target='_blank' href='{{row.entity.courseUrl}}'>{{COL_FIELD}}</a></div>"
+            },
             { name: "UCAS Code", field: "courseCode", width: 100 },
             { name: "Qual", field: "courseQualification", width: 100 },
             { name: "Years", field: "courseDuration", width: 100 },
@@ -143,9 +147,9 @@ var SearchController = function($scope, $http, $resource, uiGridConstants) {
                 $scope.searchGrid.totalItems = totalCount.total;
             });
         });
-    }
+    };
 
-   $scope.searchKisCourse();
+    $scope.searchKisCourse();
     /*
     $scope.searchResult = new NgTableParams({}, {
         getData: function(params) {
